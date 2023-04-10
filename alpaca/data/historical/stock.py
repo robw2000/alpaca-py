@@ -48,6 +48,7 @@ class StockHistoricalDataClient(RESTClient):
         use_basic_auth: bool = False,
         raw_data: bool = False,
         url_override: Optional[str] = None,
+        sandbox: bool = False,
     ) -> None:
         """
         Instantiates a Historical Data Client.
@@ -69,7 +70,7 @@ class StockHistoricalDataClient(RESTClient):
             use_basic_auth=use_basic_auth,
             api_version="v2",
             base_url=url_override if url_override is not None else BaseURL.DATA,
-            sandbox=False,
+            sandbox=sandbox,
             raw_data=raw_data,
         )
 

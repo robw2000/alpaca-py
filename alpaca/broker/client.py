@@ -108,7 +108,7 @@ class BrokerClient(RESTClient):
         api_key: Optional[str] = None,
         secret_key: Optional[str] = None,
         api_version: str = "v1",
-        sandbox: bool = True,
+        sandbox: bool = False,
         raw_data: bool = False,
         url_override: Optional[str] = None,
     ):
