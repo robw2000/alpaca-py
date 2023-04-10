@@ -63,13 +63,20 @@ class StockHistoricalDataClient(RESTClient):
             url_override (Optional[str], optional): If specified allows you to override the base url the client points
               to for proxy/testing.
         """
+        base_url = (
+            url_override
+            if url_override is not None
+            else BaseURL.DATA_SANDBOX
+            if sandbox
+            else BaseURL.DATA
+        )
         super().__init__(
             api_key=api_key,
             secret_key=secret_key,
             oauth_token=oauth_token,
             use_basic_auth=use_basic_auth,
             api_version="v2",
-            base_url=url_override if url_override is not None else BaseURL.DATA,
+            base_url=base_url,
             sandbox=sandbox,
             raw_data=raw_data,
         )
@@ -324,7 +331,6 @@ class StockHistoricalDataClient(RESTClient):
         page_token = None
 
         while True:
-
             actual_limit = None
 
             # adjusts the limit parameter value if it is over the page_limit
